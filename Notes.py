@@ -181,3 +181,61 @@ def fact_iter(n):
 # Worst case: ignore additive constants, ignore multiplicative constants
 # We want to know what captures the way the function grows
 # and that is O(n) grows linearly meaning if I do anything to the input it also increases the steps, so double input, double the steps
+
+# Simplification examples
+"""
+- Drop constants and multiplicative factors
+- Focus on dominant terms
+
+for all of these if you were to plot out how these terms grow the simplified terms are going to be the dominant terms
+
+n^2 + 2n + 2 is simplified to O(n^2)
+
+n^2 + 100000n + 3^1000 is simplified to O(n^2)
+
+log(n) + n + 4 is simplified to O(n) because n grows faster than log(n)
+
+0.0001 * n * log(n) + 300n is simplified to O(n log n) 
+
+2n^30 + 3^n is simplified to 0(3^n)
+"""
+"""
+Analyzing programs and their complexity: 
+
+Given a piece of code, you are going tto reason about each chunk of code separately,
+combine complexity classes
+    - analyze statements inside functions
+    - apply some rules, focus on dominant term
+
+Law of Addition for O():
+    - used with sequential statements <--
+    - O(f(n) + O(g(n)) is O(f(n) + g(n))
+    - for example 
+for i in range(n):
+    print('a')
+for j in range(n*n):
+    print('b')
+
+is o(n) + o(n*n) = O(n+n^2) = O(n^2) because of dominant term
+
+Law of Multiplication for O():
+    - used with nested statements/loops
+    - O(f(n)) * O(g(n)) is O(f(n) * g(n))
+    - for example
+for i in range(n):
+    for j in range(n):
+        print('a')
+        
+    is O(n) * O(n) = 0(n*n) = O(n^2) becuase the outer loops goes n
+    times and the inner loop goes n times for every outer loop iteration.
+"""
+
+# Complexity Classes
+"""
+1. O(1) denotes constant runtime (problem doesnt change run time as it grows)
+2. O(log n) denotes logarithmic running time (problem grows, runtime grows logarithmically)
+3. O(n) denotes linear running time (Problem grows, runtime increases linearly) (and so on)
+4. O(n log n) denotes log-linear running time 
+5. 0(n^c) denotes polynomial running time (c is a constant)
+6. O(c^n) denotes exponential running time (c is a constant being raised to a power based on size of input)
+"""
